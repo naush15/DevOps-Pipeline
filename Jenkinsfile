@@ -16,14 +16,14 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t devops-pipeline .'
+                sh '/usr/local/bin/docker build -t devops-pipeline .'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker rm -f devops-container || true'
-                sh 'docker run -d -p 8081:80 --name devops-container devops-pipeline'
+                sh '/usr/local/bin/docker rm -f devops-container || true'
+                sh '/usr/local/bin/docker run -d -p 8081:80 --name devops-container devops-pipeline'
             }
         }
     }
